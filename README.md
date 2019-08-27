@@ -29,7 +29,7 @@ With this image, you can run a custom script on first boot and:
 1. Boot your Pi... `/boot/firstboot.sh` will be executed and renamed to `/boot/firstboot.sh.done`.
 
 # What changes were made to the standard Raspbian-lite image?
-1. [firstboot.service](linux_mount_pi_img/firstboot.service) is installed in `/lib/systemd/system/firstboot.service`
+1. [firstboot.service](firstboot.service) is installed in `/lib/systemd/system/firstboot.service`
 1. firstboot.service is enabled: `cd /etc/systemd/system/multi-user.target.wants && ln -s /lib/systemd/system/firstboot.service .`
 1. Nothing else!
 
@@ -38,7 +38,7 @@ With this image, you can run a custom script on first boot and:
 1. Source image is obtained from the official Raspberry Pi [download page](https://www.raspberrypi.org/downloads/raspbian/).
 1. Be sure to verify the SHA hash!
 1. Mount the second partition of the source image - the `mount` command will require an `--offset` flag, [as described here](https://raspberrypi.stackexchange.com/questions/13137/how-can-i-mount-a-raspberry-pi-linux-distro-image).
-1. Install [firstboot.service](linux_mount_pi_img/firstboot.service) in `/mnt/lib/systemd/system/firstboot.service`
+1. Install [firstboot.service](firstboot.service) in `/mnt/lib/systemd/system/firstboot.service`
 1. Enable firstboot.service for systemd: `cd /mnt/etc/systemd/system/multi-user.target.wants && ln -s /lib/systemd/system/firstboot.service .`
 1. Unmount the second partition of the source image.
 1. Carefully test & validate the image before distributing!

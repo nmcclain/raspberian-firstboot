@@ -1,0 +1,11 @@
+[Unit]
+Description=sshtun
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/ssh -NTC -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes -o StrictHostKeyChecking=no -i /root/.ssh/id_rsa -R 2223:localhost:22 USER@MANAGEMENTHOST
+RestartSec=5
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

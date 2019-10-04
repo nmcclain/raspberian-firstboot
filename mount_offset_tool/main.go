@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"os/exec"
@@ -10,10 +11,10 @@ import (
 )
 
 func main() {
-	if err := doit(os.Args[1]); err != nil {
+	if err := getDevices(os.Args[1]); err != nil {
 		log.Fatal(err)
 	}
-	log.Printf("OK!")
+	// log.Printf("OK!")
 }
 
 type DevInfo struct {
@@ -22,7 +23,7 @@ type DevInfo struct {
 	Sectors int
 }
 
-func doit(img string) error {
+func getDevices(img string) error {
 	raw, err := exec.Command("/sbin/fdisk", "-l", "-o", "Device,Start,Sectors", img).Output()
 	if err != nil {
 		return err
@@ -54,14 +55,12 @@ func doit(img string) error {
 		}
 
 	}
-	log.Printf("unitSz = %+v\n", unitSz)
-	log.Printf("devices = %+v\n", devices)
+	// log.Printf("unitSz = %+v\n", unitSz)
+	// log.Printf("devices = %+v\n", devices)
 	// calculate and print mount cmd for img2
 	for _, d := range devices {
-		if strings.HasSuffix(d.Device, ".img2") {
-			offset := unitSz * d.Start
-			log.Printf("img2 mount cmd:\nmount -v -o offset=%d,loop %s /mnt\n", offset, img)
-		}
+		offset := unitSz * d.Start
+		fmt.Printf("%s mount command:\n  mount -v -o offset=%d,loop %s /mnt\n", d.Device, offset, img)
 	}
 
 	return nil

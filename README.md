@@ -38,6 +38,7 @@ With this image, you can run a custom script on first boot and:
 1. Source image is obtained from the official Raspberry Pi [download page](https://www.raspberrypi.org/downloads/raspbian/).
 1. Be sure to verify the SHA hash!
 1. Mount the second partition of the source image - the `mount` command will require an `--offset` flag, [as described here](https://raspberrypi.stackexchange.com/questions/13137/how-can-i-mount-a-raspberry-pi-linux-distro-image).
+   * Note: the [mount_offset_tool](mount_offset_tool/) helps calculate the `--offset` on linux.
 1. Install [firstboot.service](firstboot.service) in `/mnt/lib/systemd/system/firstboot.service`
 1. Enable firstboot.service for systemd: `cd /mnt/etc/systemd/system/multi-user.target.wants && ln -s /lib/systemd/system/firstboot.service .`
 1. Unmount the second partition of the source image.

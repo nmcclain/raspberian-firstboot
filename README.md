@@ -25,7 +25,7 @@ With this image, you can run a custom script on first boot and:
 1. Optionally add additional custom configuration files or small binaries to /mnt/boot (the /boot partiton is small - keep your total additions under ~160MB).
 1. Remember you can also add a [/mnt/boot/wpa_supplicant.conf](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md) file for wifi configuration.
 1. Unmount the `/boot` volume: `umount /mnt` on linux, `diskutil unmount /Volumes/boot` on macos, right-click for Windows.
-1. Flash the customized image to your SD card.
+1. Flash the customized image to your SD card. **We recommend using Balena Etcher for writing images on all platforms.** Folks have run into issues with the official `Raspberry Pi Imager`.
 1. Boot your Pi... `/boot/firstboot.sh` will be executed and renamed to `/boot/firstboot.sh.done`.
 
 # What changes were made to the standard Raspbian-lite image?

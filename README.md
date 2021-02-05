@@ -19,8 +19,10 @@ With this image, you can run a custom script on first boot and:
 
 # Quick Start
 There are two ways to use the image, pick one:
-A. Download the image, customize the image with firstboot scripts, then flash the customized image to your SD card.
-B. Download the image, flash the image to your SD card, then customize the SD card with firstboot scripts.
+
+* A. Download the image, customize the image with firstboot scripts, then flash the customized image to your SD card.
+
+* B. Download the image, flash the image to your SD card, then customize the SD card with firstboot scripts.
 
 ## Quick Start A
 1. Download the latest image from the [Releases tab](../../releases). Note we currenlty only support the raspbian-lite image.

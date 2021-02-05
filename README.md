@@ -18,14 +18,30 @@ With this image, you can run a custom script on first boot and:
 * Deploy your IoT fleet with custom UUIDs and configurations.
 
 # Quick Start
+There are two ways to use the image, pick one:
+A. Download the image, customize the image with firstboot scripts, then flash the customized image to your SD card.
+B. Download the image, flash the image to your SD card, then customize the SD card with firstboot scripts.
+
+## Quick Start A
 1. Download the latest image from the [Releases tab](../../releases). Note we currenlty only support the raspbian-lite image.
-1. Mount the `/boot` volume on Windows, MacOS, or Linux (usually this happens automatically if you "open" the image).
+1. Mount the `/boot` volume OF THE IMAGE YOU JUST DOWNLOADED. This usually happens automatically if you "open" the image on Windows, MacOS, or Linux.
 1. NOTE: references below to /mnt will be /Volumes on macos and under "My Computer" on Windows.
 1. Create a `/mnt/boot/firstboot.sh` script with your custom contents [examples here](examples/).
 1. Optionally add additional custom configuration files or small binaries to /mnt/boot (the /boot partiton is small - keep your total additions under ~160MB).
-1. Remember you can also add a [/mnt/boot/wpa_supplicant.conf](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md) file for wifi configuration.
+1. Remember, you can also add a [/mnt/boot/wpa_supplicant.conf](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md) file for wifi configuration.
 1. Unmount the `/boot` volume: `umount /mnt` on linux, `diskutil unmount /Volumes/boot` on macos, right-click for Windows.
 1. Flash the customized image to your SD card. **We recommend using Balena Etcher for writing images on all platforms.** Folks have run into issues with the official `Raspberry Pi Imager`.
+1. Boot your Pi... `/boot/firstboot.sh` will be executed and renamed to `/boot/firstboot.sh.done`.
+
+## Quick Start B
+1. Download the latest image from the [Releases tab](../../releases). Note we currenlty only support the raspbian-lite image.
+1. Flash the downloaded image to your SD card. **We recommend using Balena Etcher for writing images on all platforms.** Folks have run into issues with the official `Raspberry Pi Imager`.
+1. Mount the `/boot` volume OF YOUR THE SD CARD YOU JUST FLASHED. This usually happens automatically if you "open" the SD card volume on Windows, MacOS, or Linux.
+1. NOTE: references below to /mnt will be /Volumes on macos and under "My Computer" on Windows.
+1. Create a `/mnt/boot/firstboot.sh` script with your custom contents [examples here](examples/).
+1. Optionally add additional custom configuration files or small binaries to /mnt/boot (the /boot partiton is small - keep your total additions under ~160MB).
+1. Remember, you can also add a [/mnt/boot/wpa_supplicant.conf](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md) file for wifi configuration.
+1. Unmount the `/boot` volume: `umount /mnt` on linux, `diskutil unmount /Volumes/boot` on macos, right-click for Windows.
 1. Boot your Pi... `/boot/firstboot.sh` will be executed and renamed to `/boot/firstboot.sh.done`.
 
 # What changes were made to the standard Raspbian-lite image?

@@ -53,9 +53,9 @@ There are two ways to use the image, pick one:
 
 # How to reproduce this image yourself
 1. This requires modifying the second partition of the Raspbian image, which requires Linux for ext4 support.
-1. Source image is obtained from the official Raspberry Pi [download page](https://www.raspberrypi.org/downloads/raspbian/).
-1. Be sure to verify the SHA hash!
-1. Mount the second partition of the source image - the `mount` command will require an `--offset` flag, [as described here](https://raspberrypi.stackexchange.com/questions/13137/how-can-i-mount-a-raspberry-pi-linux-distro-image).
+2. Source image is obtained from the official Raspberry Pi [download page](https://www.raspberrypi.org/downloads/raspbian/).
+3. Be sure to verify the SHA hash!
+4. Mount the second partition of the source image - the `mount` command will require an `--offset` flag, [as described here](https://raspberrypi.stackexchange.com/questions/13137/how-can-i-mount-a-raspberry-pi-linux-distro-image).
    * Note: the [mount_offset_tool](mount_offset_tool/) helps calculate the `--offset` on linux.
    * Example usage (thanks @tgelite):
 ```
@@ -66,8 +66,12 @@ $ go run main.go /media/share/2021-01-11-raspios-buster-armhf-lite.img
 /media/share/2021-01-11-raspios-buster-armhf-lite.img2 mount command:
   mount -v -o offset=272629760,loop /media/share/2021-01-11-raspios-buster-armhf-lite.img /mnt
 ```
-1. Install [firstboot.service](firstboot.service) in `/mnt/lib/systemd/system/firstboot.service`
-1. Enable firstboot.service for systemd: `cd /mnt/etc/systemd/system/multi-user.target.wants && ln -s /lib/systemd/system/firstboot.service .`
-1. Unmount the second partition of the source image.
-1. Carefully test & validate the image before distributing!
+   * Alternatively, you can mount it with `guestmount` (thanks @bastien-roucaries):
+$ guestmount -v -a 2021-01-11-raspios-buster-armhf-lite-firstboot.img -m /dev/sda2 -m /dev/sda1:/boot /mnt
+later, unmount with: $ guestunmount /mnt
+```
+5. Install [firstboot.service](firstboot.service) in `/mnt/lib/systemd/system/firstboot.service`
+6. Enable firstboot.service for systemd: `cd /mnt/etc/systemd/system/multi-user.target.wants && ln -s /lib/systemd/system/firstboot.service .`
+7. Unmount the second partition of the source image.
+8. Carefully test & validate the image before distributing!
 

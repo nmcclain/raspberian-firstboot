@@ -66,7 +66,8 @@ $ go run main.go /media/share/2021-01-11-raspios-buster-armhf-lite.img
 /media/share/2021-01-11-raspios-buster-armhf-lite.img2 mount command:
   mount -v -o offset=272629760,loop /media/share/2021-01-11-raspios-buster-armhf-lite.img /mnt
 ```
-   * Alternatively, you can mount it with `guestmount` (thanks @bastien-roucaries):
+     * Alternatively, you can mount it with `guestmount` (thanks @bastien-roucaries):
+```
 $ guestmount -v -a 2021-01-11-raspios-buster-armhf-lite-firstboot.img -m /dev/sda2 -m /dev/sda1:/boot /mnt
 later, unmount with: $ guestunmount /mnt
 ```

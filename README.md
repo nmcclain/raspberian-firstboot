@@ -57,6 +57,15 @@ There are two ways to use the image, pick one:
 1. Be sure to verify the SHA hash!
 1. Mount the second partition of the source image - the `mount` command will require an `--offset` flag, [as described here](https://raspberrypi.stackexchange.com/questions/13137/how-can-i-mount-a-raspberry-pi-linux-distro-image).
    * Note: the [mount_offset_tool](mount_offset_tool/) helps calculate the `--offset` on linux.
+   * Example usage (thanks @tgelite):
+```
+$ cd mount_offset_tool/
+$ go run main.go /media/share/2021-01-11-raspios-buster-armhf-lite.img
+/media/share/2021-01-11-raspios-buster-armhf-lite.img1 mount command:
+  mount -v -o offset=4194304,loop /media/share/2021-01-11-raspios-buster-armhf-lite.img /mnt
+/media/share/2021-01-11-raspios-buster-armhf-lite.img2 mount command:
+  mount -v -o offset=272629760,loop /media/share/2021-01-11-raspios-buster-armhf-lite.img /mnt
+```
 1. Install [firstboot.service](firstboot.service) in `/mnt/lib/systemd/system/firstboot.service`
 1. Enable firstboot.service for systemd: `cd /mnt/etc/systemd/system/multi-user.target.wants && ln -s /lib/systemd/system/firstboot.service .`
 1. Unmount the second partition of the source image.

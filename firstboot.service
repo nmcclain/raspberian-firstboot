@@ -1,6 +1,6 @@
 [Unit]
 Description=FirstBoot
-After=network.target
+After=network.target apt-daily.service apt-daily-upgrade.service
 Before=rc-local.service
 ConditionFileNotEmpty=/boot/firstboot.sh
 

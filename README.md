@@ -55,7 +55,7 @@ There are two ways to use the image, pick one:
 Note: these are the steps used to produce the images in the Releases section of this repo. Once you have created a generic image with these steps, you can proceed to customize it by following the Quick Start.
 
 1. This requires modifying the second partition of the Raspbian image, which requires Linux for ext4 support.
-2. Source image is obtained from the official Raspberry Pi [download page](https://www.raspberrypi.org/downloads/raspbian/).
+2. Source image is obtained from the official Raspberry Pi [download page](https://www.raspberrypi.com/software/operating-systems/).
 3. Be sure to verify the SHA hash!
 4. Mount the second partition of the source image - the `mount` command will require an `--offset` flag, [as described here](https://raspberrypi.stackexchange.com/questions/13137/how-can-i-mount-a-raspberry-pi-linux-distro-image).
    * Note: the [mount_offset_tool](mount_offset_tool/) helps calculate the `--offset` on linux.
